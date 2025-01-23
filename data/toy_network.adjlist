@@ -1,0 +1,13 @@
+G = Graph('data/citation_network.adjlist').graph
+
+
+# Step 3: Draw the graph and display node labels
+plt.figure(figsize=(10, 10))  # Increase the size of the figure
+pos = nx.spring_layout(G, seed=42)  # Layout the nodes (spring layout is a good choice for clear visibility)
+
+# Draw the graph with node labels
+nx.draw(G, pos, with_labels=True, node_size=3000, node_color='skyblue', font_size=10, font_weight='bold')
+
+# Show the graph
+plt.title("Network Visualization")
+plt.show()
