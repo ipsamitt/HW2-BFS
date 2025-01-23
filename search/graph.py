@@ -13,15 +13,40 @@ class Graph:
         self.graph = nx.read_adjlist(filename, create_using=nx.DiGraph, delimiter=";")
 
     def bfs(self, start, end=None):
-        """
-        TODO: write a method that performs a breadth first traversal and pathfinding on graph G
+  
 
-        * If there's no end node input, return a list nodes with the order of BFS traversal
-        * If there is an end node input and a path exists, return a list of nodes with the order of the shortest path
-        * If there is an end node input and a path does not exist, return None
+        #If there's no end node input, return a list nodes with the order of BFS traversal
 
-        """
-        return
+        if end is None:
+            Q = []
+            visited = []
+            Q.append(start)
+            visited.append(start)
+            while len(Q) != 0:
+                node = Q.pop(0)
+                for neighbor in node.neighbors:
+                    if neighbor not in visited:
+                        visited.append(neighbor)
+                        Q.push(neighbor)
+
+
+        #If there is an end node input and a path exists, return a list of nodes with the order of the shortest path
+        #If there is an end node input and a path does not exist, return None
+
+        if end is None:
+            Q = []
+            visited = []
+            Q.append(start)
+            visited.append(start)
+            while len(Q) != 0:
+                node = Q.pop(0)
+                for neighbor in node.neighbors:
+                    if neighbor not in visited:
+                        visited.append(neighbor)
+                        Q.push(neighbor)
+                        if neighbor == end:
+                            return visited
+        return visited
 
 
 
