@@ -1,5 +1,4 @@
 import networkx as nx
-import matplotlib.pyplot as plt
 
 
 class Graph:
@@ -75,12 +74,4 @@ class Graph:
         return visited
     
 
-new_graph = Graph('data/citation_network.adjlist')
-print(new_graph.bfs("Luke Gilbert", end="Joseph Bondy-Denomy"))
-
-new_graph = Graph('data/citation_network.adjlist')
-whole_path = list(nx.bfs_tree(new_graph.graph, source="Luke Gilbert").nodes())
-target_index = whole_path.index("Joseph Bondy-Denomy")
-ground_truth = whole_path[:target_index+1]
-print(ground_truth)
 
