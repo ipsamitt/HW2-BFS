@@ -4,13 +4,7 @@ import pytest
 import networkx as nx
 
 def test_bfs_traversal():
-    """
-    TODO: Write your unit test for a breadth-first
-    traversal here. Create an instance of your Graph class 
-    using the 'tiny_network.adjlist' file and assert 
-    that all nodes are being traversed (ie. returns 
-    the right number of nodes, in the right order, etc.)
-    """
+
     new_graph = graph.Graph('data/tiny_network.adjlist')
     assert(len(new_graph.bfs("Luke Gilbert", end=None))  == 30)
     ground_truth = nx.bfs_tree(new_graph.graph, source="Luke Gilbert").nodes()
@@ -31,10 +25,28 @@ def test_bfs():
     
     Include an additional test for nodes that are not connected 
     which should return None. 
+
+
+    Be sure that your code can handle possible edge cases, e.g.:
+    running bfs traversal on an empty graph
+    running bfs traversal on an unconnected graph
+    running bfs from a start node that does not exist in the graph
+    running bfs search for an end node that does not exist in the graph
+    any other edge cases you can think of
     """
     
     new_graph = graph.Graph('data/citation_network.adjlist')
+    bfs_tree = nx.bfs_tree(new_graph.graph, source="Luke Gilbert")
+    
+    new_graph = graph.Graph('data/citation_network.adjlist')
+    whole_path = list(nx.bfs_tree(new_graph.graph, source="Luke Gilbert").nodes())
+    target_index = whole_path.index("Tony Capra")
+    ground_truth = whole_path[:target_index+1]
+    assert((new_graph.bfs("Luke Gilbert", end="Tony Capra")) == (list(ground_truth)))
 
+
+#searching for end node that doesn't exist in the graph
+    assert((new_graph.bfs("Luke Gilbert", end="Abul Abbas")) == None)
     
     
-    pass
+    

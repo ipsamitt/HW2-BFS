@@ -28,9 +28,7 @@ class Graph:
     
     def bfs(self, start, end=None):
         #If there's no end node input, return a list nodes with the order of BFS traversal
-        visited = []
-        print(start)
-       
+        visited = []       
 
         if end is None:
             Q = []
@@ -49,18 +47,30 @@ class Graph:
         #If there is an end node input and a path does not exist, return None
 
         if end is not None:
-            end = self.graph[end]
             Q = []
-            Q.append(self.graph[start])
+            Q.append(start)
             visited.append(start)
             while len(Q) != 0:
                 node = Q.pop(0)
-                for neighbor in list(self.graph.neighbors(node)):
+                neighbors = list(self.graph.neighbors(node))
+                for neighbor in neighbors:
                     if neighbor not in visited:
                         visited.append(neighbor)
                         Q.append(neighbor)
                         if neighbor == end:
                             return visited
+            
+            return None
+        
         return visited
     
+
+new_graph = Graph('data/citation_network.adjlist')
+print(new_graph.bfs("Luke Gilbert", end="Joseph Bondy-Denomy"))
+
+new_graph = Graph('data/citation_network.adjlist')
+whole_path = list(nx.bfs_tree(new_graph.graph, source="Luke Gilbert").nodes())
+target_index = whole_path.index("Joseph Bondy-Denomy")
+ground_truth = whole_path[:target_index+1]
+print(ground_truth)
 
