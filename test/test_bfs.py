@@ -47,6 +47,17 @@ def test_bfs():
 
 #searching for end node that doesn't exist in the graph
     assert((new_graph.bfs("Luke Gilbert", end="Abul Abbas")) == None)
+
+#running bfs traversal on an unconnected graph
+    new_graph = graph.Graph('data/tiny_network.adjlist')
+    assert((new_graph.bfs("Luke Gilbert", end="34916529")) == None)
+
+#running bfs traversal on an empty graph
+    new_graph = graph.Graph('data/empty_network.adjlist')
+    try:
+        (new_graph.bfs("Luke Gilbert", end="Tony Capra"))
+    except Exception as e:
+        assert(type(e) == Exception)
     
     
     

@@ -27,6 +27,16 @@ class Graph:
         return self.graph.edges()
     
     def bfs(self, start, end=None):
+
+        # empty graph
+        if len(self.graph.nodes()) == 0:
+              raise Exception("Empty graph")
+        
+        # start node not in graph
+        if start not in self.graph.nodes():
+            raise Exception("Start node not in graph")
+
+        
         #If there's no end node input, return a list nodes with the order of BFS traversal
         visited = []       
 
